@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>goCorp - Corporate Carpooling</title>
+  <style>
+    :root {
+      --dark-blue: #001f3f;
+      --light-blue: #e6f7ff;
+      --accent-blue: #0056b3;
+      --accent-orange: #CB6040;
+    }
+
+    body {
+      background: var(--dark-blue);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--light-blue);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-container {
+      background-color: rgba(230, 247, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .search-bar input,
+    .search-bar select {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: var(--light-blue);
+      color: var(--dark-blue);
+    }
+
+    .search-bar button {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent-blue);
+      color: var(--light-blue);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .search-bar button:hover {
+      background-color: #003d7a;
+    }
+
+    .passenger-boxes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .passenger-box {
+      background-color: rgba(230, 247, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .passenger-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .passenger-box h3 {
+      margin-top: 0;
+      color: var(--light-blue);
+    }
+
+    .passenger-box p {
+      margin: 0.5rem 0;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--accent-orange);
+      margin-top: 1rem;
+    }
+
+    .book-button {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      background-color: var(--accent-orange);
+      color: var(--light-blue);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .book-button:hover {
+      background-color: #a54e33;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Corporate Carpooling Made Easy</h1>
+    <p class="tagline">Find and share rides with colleagues. Save time, money, and the environment.</p>
+
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" id="source" placeholder="Source Location" aria-label="Source Location">
+        <input type="text" id="destination" placeholder="Destination Location" aria-label="Destination Location">
+        <input type="date" id="date" aria-label="Date">
+        <select id="passengers" aria-label="Number of Passengers">
+          <option>1 passenger</option>
+          <option>2 passengers</option>
+          <option>3 passengers</option>
+          <option>4 passengers</option>
+        </select>
+        <button id="searchButton">Search</button>
+      </div>
+    </div>
+
+    <div class="passenger-boxes" id="passengerBoxes">
+      <div class="passenger-box" data-price="1500" data-route="Bangalore-Chennai">
+        <h3>Available Car 1</h3>
+        <p><strong>Host Name:</strong> John Doe</p>
+        <p><strong>Route:</strong> Bangalore → Chennai</p>
+        <p><strong>Time:</strong> 10:00 AM - 2:30 PM</p>
+        <p><strong>Available Seats:</strong> 2 seats left</p>
+        <p><strong>Car Type:</strong> Sedan</p>
+        <p class="price"><strong>Price:</strong> ₹1500 per seat</p>
+        <button class="book-button">Book Now</button>
+      </div>
+
+      <div class="passenger-box" data-price="2000" data-route="Delhi-Mumbai">
+        <h3>Available Car 2</h3>
+        <p><strong>Host Name:</strong> Jane Smith</p>
+        <p><strong>Route:</strong> Delhi → Mumbai</p>
+        <p><strong>Time:</strong> 6:00 AM - 12:15 PM</p>
+        <p><strong>Available Seats:</strong> 3 seats left</p>
+        <p><strong>Car Type:</strong> SUV</p>
+        <p class="price"><strong>Price:</strong> ₹2000 per seat</p>
+        <button class="book-button">Book Now</button>
+      </div>
+
+      <div class="passenger-box" data-price="1200" data-route="Hyderabad-Pune">
+        <h3>Available Car 3</h3>
+        <p><strong>Host Name:</strong> Alan Brown</p>
+        <p><strong>Route:</strong> Hyderabad → Pune</p>
+        <p><strong>Time:</strong> 8:00 AM - 11:45 AM</p>
+        <p><strong>Available Seats:</strong> 1 seat left</p>
+        <p><strong>Car Type:</strong> Hatchback</p>
+        <p class="price"><strong>Price:</strong> ₹1200 per seat</p>
+        <button class="book-button">Book Now</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+      const source = document.getElementById('source').value.toLowerCase();
+      const destination = document.getElementById('destination').value.toLowerCase();
+      const boxes = document.querySelectorAll('.passenger-box');
+      boxes.forEach(box => {
+        const route = box.getAttribute('data-route').toLowerCase();
+        if (route.includes(source) && route.includes(destination)) {
+          box.style.display = 'block';
+        } else {
+          box.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
