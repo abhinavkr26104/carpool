@@ -13,9 +13,9 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.5;
-            color: #000000;
-            background-color: #001F3F;
+            line-height: 1.6;
+            color: #333;
+            background-color: #001F3F; /* Dark blue background */
         }
         a {
             color: inherit;
@@ -30,8 +30,8 @@
         }
         /* Header */
         header {
-            background-color: #3A6D8C;001F3F;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: #2c3e50; /* Dark blue for header */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         .header-content {
             display: flex;
@@ -43,43 +43,52 @@
             display: flex;
             align-items: center;
             font-weight: bold;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
+            color: #fff; /* White text color */
         }
         .logo svg {
             margin-right: 0.5rem;
         }
         nav a {
-            margin-left: 1rem;
-            font-size: 0.875rem;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            color: #fff; /* White text color */
         }
         nav a:hover {
             text-decoration: underline;
         }
         /* Main content */
         main {
-            padding: 2rem 0;
+            padding: 3rem 0;
         }
         h1, h2 {
             margin-bottom: 1rem;
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             text-align: center;
+            color: #fff; /* White text color */
         }
         h2 {
-            font-size: 1.75rem;
+            font-size: 2rem;
             margin-top: 2rem;
+            color: #2c3e50; /* Dark blue for section titles */
         }
         p {
             margin-bottom: 1rem;
+            line-height: 1.8;
         }
         /* Sections */
         .section {
-            background-color: #C4D7FF;
+            background-color: #E2F1E7; /* Very light blue for elements */
             border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        .section:hover {
+            transform: translateY(-5px);
         }
         /* Benefits */
         .benefits-list {
@@ -93,8 +102,8 @@
             align-items: flex-start;
         }
         .benefit-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             margin-right: 0.75rem;
             flex-shrink: 0;
         }
@@ -114,8 +123,8 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 2rem;
-            height: 2rem;
+            width: 2.5rem;
+            height: 2.5rem;
             background-color: #0070f3;
             color: white;
             border-radius: 50%;
@@ -123,6 +132,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 1rem;
         }
         /* FAQ */
         .faq-item {
@@ -160,9 +170,10 @@
         label {
             margin-bottom: 0.5rem;
             font-weight: bold;
+            color: #2c3e50; /* Dark blue for labels */
         }
         input, textarea {
-            padding: 0.5rem;
+            padding: 0.75rem;
             border: 1px solid #ccc;
             border-radius: 0.25rem;
             font-size: 1rem;
@@ -180,102 +191,31 @@
         }
         button:hover {
             background-color: #0056b3;
-        }        /* Footer */
-footer {
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 1.5rem 0; /* Increased padding for more space */
-    margin-top: 3rem;
-    display: flex;
-    justify-content: space-between; /* Space between the items */
-    align-items: center; /* Vertically center the items */
-    flex-wrap: wrap; /* Ensure it wraps on smaller screens */
-}
-
-/* Footer text (p), navigation, and dark mode toggle in a single line */
-footer p,
-footer nav,
-#dark-mode-toggle-container {
-    flex: 1;
-    text-align: center; /* Center align each item */
-}
-
-footer p {
-    font-size: 0.9rem; /* Slightly smaller font for footer text */
-    margin: 0; /* Remove extra margins */
-}
-
-footer nav {
-    text-align: center;
-}
-
-footer nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 1rem;
-    font-size: 0.9rem; /* Adjust font size for footer links */
-    transition: color 0.3s ease;
-}
-
-footer nav a:hover {
-    color: #3498db;
-}
-
-/* Footer dark mode toggle */
-#dark-mode-toggle-container {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-
-footer #dark-mode-toggle-container button {
-    background-color: #fff;
-    border: none;
-    color:white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-footer #dark-mode-toggle-container button:hover {
-    background-color: #2980b9;
-    transform: translateY(-3px);
-}
-
-/* Footer responsiveness */
-@media (max-width: 768px) {
-    footer {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        padding: 1rem 0;
-    }
-
-    footer nav a {
-        display: block;
-        margin: 0.5rem 0;
-    }
-
-    footer p,
-    footer nav,
-    #dark-mode-toggle-container {
-        text-align: center; /* Ensure everything stays centered */
-        margin-bottom: 0.5rem;
-    }
-}
-
-
+        }
+        /* Footer */
+        footer {
+            background-color: #2c3e50; /* Dark blue for footer */
+            border-top: 1px solid #e5e5e5;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #fff; /* White text color */
+        }
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            /* Adjust controls for mobile */
-            .controls {
-                width: 100%; /* Make form full width on mobile */
+            .benefits-list {
+                grid-template-columns: 1fr;
             }
-
-            #map {
-                width: 100%; /* Make map full width on mobile */
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
             }
-
-            .container {
-                flex-direction: column; /* Stack them vertically on small screens */
+            nav {
+                margin-top: 1rem;
+            }
+            nav a {
+                margin-left: 0;
+                margin-right: 1rem;
             }
         }
     </style>
@@ -286,7 +226,7 @@ footer #dark-mode-toggle-container button:hover {
             <div class="header-content">
                 <a href="index.html" class="logo">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
-                    goCorp
+                    CorpPool
                 </a>
                 <nav>
                     <a href="index.html">Home</a>
@@ -300,18 +240,18 @@ footer #dark-mode-toggle-container button:hover {
 
     <main>
         <div class="container">
-            <h1>Learn More About goCorp</h1>
+            <h1>Learn More About CorpPool</h1>
             
             <section class="section">
-                <h2>What is goCorp</h2>
-                <p>goCorp is a corporate car pooling service designed to help employees commute more efficiently, reduce traffic congestion, and decrease their carbon footprint. By connecting colleagues who live near each other or along similar routes, we make it easy to share rides to and from work.</p>
+                <h2>What is CorpPool?</h2>
+                <p>CorpPool is a corporate car pooling service designed to help employees commute more efficiently, reduce traffic congestion, and decrease their carbon footprint. By connecting colleagues who live near each other or along similar routes, we make it easy to share rides to and from work.</p>
             </section>
 
             <section class="section">
                 <h2>Benefits of Car Pooling</h2>
                 <ul class="benefits-list">
                     <li class="benefit-item">
-                        <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/><path d="M3 12h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
+                        <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3V1m4 4.3V3m3 3h2m-5 7h2m-6 5v2m3-2h2m-4 3.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zM1 12h2m0 0V6m-2 6a6 6 0 0 0 6 6h6m0-4h4v4m-4 0h4m-4-3.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zM3 12h1.3"></path></svg>
                         <span>Reduced environmental impact</span>
                     </li>
                     <li class="benefit-item">
@@ -332,7 +272,7 @@ footer #dark-mode-toggle-container button:hover {
             <section class="section">
                 <h2>How It Works</h2>
                 <ol class="steps">
-                    <li class="step">Sign up for goCorp using your corporate email address.</li>
+                    <li class="step">Sign up for CorpPool using your corporate email address.</li>
                     <li class="step">Enter your car details and usual commute schedule.</li>
                     <li class="step">Browse available rides or offer your own.</li>
                     <li class="step">Connect with colleagues and arrange your carpool.</li>
@@ -344,8 +284,8 @@ footer #dark-mode-toggle-container button:hover {
                 <h2>Frequently Asked Questions</h2>
                 <div class="faq-list">
                     <div class="faq-item">
-                        <div class="faq-question">Is goCorp only for employees with cars?</div>
-                        <div class="faq-answer">No, goCorp is for all employees. You can either offer rides if you have a car or join rides as a passenger.</div>
+                        <div class="faq-question">Is CorpPool only for employees with cars?</div>
+                        <div class="faq-answer">No, CorpPool is for all employees. You can either offer rides if you have a car or join rides as a passenger.</div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">How is the cost of the ride shared?</div>
@@ -353,7 +293,7 @@ footer #dark-mode-toggle-container button:hover {
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">What if my work schedule changes?</div>
-                        <div class="faq-answer">You can easily update your schedule in the goCorp website. We recommend communicating any changes to your carpool group as soon as possible.</div>
+                        <div class="faq-answer">You can easily update your schedule in the CorpPool app. We recommend communicating any changes to your carpool group as soon as possible.</div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">Is my personal information secure?</div>
@@ -384,14 +324,9 @@ footer #dark-mode-toggle-container button:hover {
     </main>
 
     <footer>
-        <p>&copy; 2024 goCorp. All rights reserved.</p>
-        <nav>
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <div id="dark-mode-toggle-container"></div> <!-- Placeholder for the toggle button -->
-        </nav>
+        <div class="container">
+            <p>&copy; 2024 CorpPool. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
