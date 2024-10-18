@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
+    /* General Styles */
     :root {
       --dark-blue: #1a2a3a;
       --medium-blue: #2c3e50;
@@ -24,6 +25,7 @@
       line-height: 1.6;
     }
 
+    /* Header */
     header {
       background-color: var(--medium-blue);
       padding: 1rem;
@@ -35,15 +37,14 @@
       justify-content: space-between;
       align-items: center;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: auto;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      font-weight: bold;
       font-size: 1.5rem;
-      color: var(--text-color);
+      color: var(--accent-blue);
       text-decoration: none;
     }
 
@@ -52,17 +53,17 @@
     }
 
     nav a {
+      color: var(--light-blue);
       margin-left: 1.5rem;
-      color: var(--text-color);
       text-decoration: none;
       font-size: 1rem;
-      transition: color 0.3s ease;
     }
 
     nav a:hover {
       color: var(--accent-blue);
     }
 
+    /* Main Content */
     main {
       max-width: 1200px;
       margin: 2rem auto;
@@ -138,11 +139,11 @@
       background-color: #95a5a6;
       cursor: not-allowed;
     }
-    .input {
-  display: flex; /* Use flexbox to arrange buttons side by side */
-  gap: 1rem; /* Space between buttons */
-}
 
+    .input {
+      display: flex;
+      gap: 1rem;
+    }
 
     #map {
       height: 500px;
@@ -159,44 +160,6 @@
       font-size: 1rem;
     }
 
-    footer {
-      background-color: var(--medium-blue);
-      color: var(--text-color);
-      padding: 1.5rem 0;
-      margin-top: 3rem;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    footer p {
-      font-size: 0.9rem;
-      margin: 0;
-    }
-
-    footer nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    footer nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
-    }
-
-    footer nav a:hover {
-      color: var(--accent-blue);
-    }
-
     @media (max-width: 768px) {
       main {
         flex-direction: column;
@@ -206,21 +169,55 @@
         width: 100%;
       }
 
-      .header-content, .footer-content {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      nav {
-        margin-top: 1rem;
-      }
-
-      nav a, footer nav a {
-        margin: 0.5rem;
-      }
-
       #map {
         height: 300px;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--medium-blue);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-color);
+      font-size: 0.9rem;
+    }
+
+    footer nav {
+      display: flex;
+    }
+
+    footer nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    footer nav a:hover {
+      color: var(--accent-blue);
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer #dark-mode-toggle-container {
+      display: none; /* Hide dark mode toggle if not needed */
+    }
+
+    /* Footer responsiveness */
+    @media (max-width: 768px) {
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      footer nav {
+        margin-top: 0.5rem;
       }
     }
   </style>
@@ -262,10 +259,9 @@
           <input type="text" id="end-lng" value="76.6394">
         </div>
         <div class="input">
-            <button id="start-btn">Start Ride</button>
-            <button id="reset-view-btn">Reset Map View</button>
-          </div>
-          
+          <button id="start-btn">Start Ride</button>
+          <button id="reset-view-btn">Reset Map View</button>
+        </div>
       </div>
       <div class="status" id="status">Status: Ready to start the ride...</div>
     </div>
@@ -276,143 +272,62 @@
   </main>
 
   <footer>
-    <div class="footer-content">
-      <p>&copy; 2024 goCorp. All rights reserved.</p>
-      <nav>
-        <a href="#features">Features</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-    </div>
+    <p>&copy; 2024 goCorp. All rights reserved.</p>
+    <nav>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact Us</a>
+    </nav>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
-    let travelTime = 0;
-    let interval;
-    const apiKey = '5b3ce3597851110001cf6248ef865666c8c645ac8e63f7842baf7add'; // Replace with your OpenRouteService API key
+    let map = L.map('map').setView([12.9716, 77.5946], 13);
+    let startLatLng = null;
+    let endLatLng = null;
+    let marker = null;
+    let polyline = null;
 
-    // Initialize the map
-    const map = L.map('map').setView([20.5937, 78.9629], 5); // Center on India
-
-    // Set up the OpenStreetMap layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '© OpenStreetMap'
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Fetch ride details from the database
-    fetch('http://localhost:5000/api/ride-details') // Update to your server's URL
-      .then(response => response.json())
-      .then(data => {
-        $("#start-lat").val(data.startLat);
-        $("#start-lng").val(data.startLng);
-        $("#end-lat").val(data.endLat);
-        $("#end-lng").val(data.endLng);
-      })
-      .catch(error => {
-        console.error('Error fetching ride details:', error);
-        $("#status").text("Status: Error fetching ride details.");
-      });
+    document.getElementById('start-btn').addEventListener('click', function() {
+      const startLat = parseFloat(document.getElementById('start-lat').value);
+      const startLng = parseFloat(document.getElementById('start-lng').value);
+      const endLat = parseFloat(document.getElementById('end-lat').value);
+      const endLng = parseFloat(document.getElementById('end-lng').value);
 
-    $("#start-btn").on("click", function() {
-      const startLat = parseFloat($("#start-lat").val());
-      const startLng = parseFloat($("#start-lng").val());
-      const endLat = parseFloat($("#end-lat").val());
-      const endLng = parseFloat($("#end-lng").val());
+      if (startLat && startLng && endLat && endLng) {
+        startLatLng = [startLat, startLng];
+        endLatLng = [endLat, endLng];
 
-      if (!startLat || !startLng || !endLat || !endLng) {
-        alert("Please enter valid start and end coordinates.");
-        return;
+        if (marker) {
+          map.removeLayer(marker);
+        }
+
+        if (polyline) {
+          map.removeLayer(polyline);
+        }
+
+        marker = L.marker(startLatLng).addTo(map);
+        polyline = L.polyline([startLatLng, endLatLng], { color: 'blue' }).addTo(map);
+        map.fitBounds(polyline.getBounds());
+
+        document.getElementById('status').innerText = 'Status: Ride in progress...';
       }
-
-      const startLocation = { lat: startLat, lng: startLng };
-      const endLocation = { lat: endLat, lng: endLng };
-
-      travelTime = 0;
-      $("#status").text("Status: Calculating route...");
-
-      getRouteAndTrack(startLocation, endLocation);
     });
 
-    function getRouteAndTrack(start, end) {
-      fetchRoute(start, end, function(routeData) {
-        moveAlongRoute(routeData);
-      });
-    }
-
-    function fetchRoute(start, end, callback) {
-      const startCoord = `${start.lng},${start.lat}`;
-      const endCoord = `${end.lng},${end.lat}`;
-
-      fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${startCoord}&end=${endCoord}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.features && data.features.length > 0) {
-            const route = data.features[0].geometry.coordinates;
-            callback(route);
-          } else {
-            console.error('Route not found.');
-            $("#status").text("Status: Route not found.");
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          $("#status").text("Status: Error fetching route.");
-        });
-    }
-
-    let routeBounds;
-
-    function moveAlongRoute(route) {
-      let routeIndex = 0;
-      let polyline = L.polyline([], { color: '#3498db', weight: 5 }).addTo(map);
-
-      // Calculate the bounds of the route
-      routeBounds = L.latLngBounds(route.map(coord => [coord[1], coord[0]]));
-      window.routeBounds = routeBounds; //Added this line
-
-      // Fit the map to the route bounds with minimal padding
-      map.fitBounds(routeBounds.pad(0.05));
-      let currentZoom = map.getZoom();
-      map.setZoom(Math.min(currentZoom + 4, 18)); // Increase zoom by 4 levels, max zoom 18
-
-      interval = setInterval(() => {
-        travelTime += 1;
-
-        if (routeIndex < route.length) {
-          const currentLocation = {
-            lng: route[routeIndex][0],
-            lat: route[routeIndex][1]
-          };
-
-          routeIndex++;
-          polyline.addLatLng([currentLocation.lat, currentLocation.lng]);
-          map.panTo([currentLocation.lat, currentLocation.lng]);
-
-          updateETA(route.length - routeIndex);
-        } else {
-          clearInterval(interval);
-          $("#status").text("Status: Arrived at destination!");
-        }
-      }, 1000); // Update every second
-    }
-
-    function resetMapView() {
-      if (window.routeBounds) {
-        map.fitBounds(window.routeBounds.pad(0.05));
-        let currentZoom = map.getZoom();
-        map.setZoom(Math.min(currentZoom + 4, 18));
+    document.getElementById('reset-view-btn').addEventListener('click', function() {
+      map.setView([12.9716, 77.5946], 13);
+      if (marker) {
+        map.removeLayer(marker);
       }
-    }
-
-    function updateETA(remainingPoints) {
-      const remainingTime = Math.max(0, remainingPoints * 1); // 1 second per point, for simplicity
-      $("#status").text(`Status: On the way... ETA: ${remainingTime} seconds.`);
-    }
-
-    $("#reset-view-btn").on("click", resetMapView);
+      if (polyline) {
+        map.removeLayer(polyline);
+      }
+      document.getElementById('status').innerText = 'Status: Ready to start the ride...';
+    });
   </script>
 </body>
 </html>
