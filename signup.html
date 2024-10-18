@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+    <!-- Add FontAwesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px; /* Limit form width for better responsiveness */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow to the form */
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        .logo {
+            font-size: 40px;
+        }
+
+        .sub-heading {
+            font-size: 14px;
+            margin-top: 10px;
+            color: rgb(161, 161, 161);
+        }
+
+        .btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid rgb(236, 233, 233);
+            color: rgb(104, 102, 102);
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgb(236, 233, 233);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .form-control {
+            padding: 10px;
+            border: 1px solid rgb(236, 233, 233);
+            border-radius: 5px;
+            width: 100%; /* Make the input fields fill the container */
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        label {
+            font-size: 14px;
+            color: rgb(161, 161, 161);
+        }
+
+        .mt {
+            margin-top: 20px;
+        }
+
+        .footer-group {
+            margin-top: 20px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%; /* Full width of the container */
+        }
+
+        .footer-group span {
+            color: rgb(161, 161, 161);
+        }
+
+        .footer-group a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 953px) {
+            .hero-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="signup.css">
+        <!-- Add FontAwesome CDN for icons -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <!-- Google OAuth CDN -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!-- Facebook SDK -->
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    
+        <style>
+            /* Your CSS remains unchanged */
+        </style>
+    </head>
+    <body>
+    
+    <!-- Form Section -->
+    <div class="form-section">
+        <span class="logo"> <i class="fas fa-car-side"></i></span>
+        <h2>Welcome to goCorp</h2>
+    
+        <span class="sub-heading">Start your journey with us</span>
+    
+        <div class="btns">
+            <!-- Sign up with Google -->
+            <button class="btn-secondary" id="google-signup">
+                <i class="fab fa-google"></i> Sign up with Google
+            </button>
+            
+            <!-- Sign up with Facebook -->
+            <button class="btn-secondary" id="facebook-signup">
+                <i class="fab fa-facebook"></i> Sign up with Facebook
+            </button>
+        </div>
+    
+        <!-- Sign Up Form -->
+        <form action="#" method="POST">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" name="email" id="email" required />
+    
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password" required />
+    
+            <div class="input-group">
+                <input type="checkbox" id="checkbox" name="terms" />
+                <label for="checkbox">
+                    I agree to the <a href="#">terms and conditions</a>
+                </label>
+            </div>
+    
+            <button type="submit" class="btn-primary mt">Sign Up</button>
+        </form>
+    
+        <!-- Footer Links -->
+        <div class="footer-group">
+            <span>Already Registered? <a href="#">Sign In</a></span>
+            <a href="#">Forgot password?</a>
+        </div>
+    </div>
+    
+    <!-- Google Sign-In JavaScript Logic -->
+    <script>
+        // Google OAuth Sign-In
+        function handleGoogleSignIn(response) {
+            // Extract Google sign-in information
+            console.log("Google Sign-In successful:", response);
+            // You can now send this data to your backend
+            let idToken = response.credential;
+            // Use it for server-side verification or other processing
+        }
+    
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "YOUR_GOOGLE_CLIENT_ID", // Replace with your Google client ID
+                callback: handleGoogleSignIn
+            });
+            
+            google.accounts.id.renderButton(
+                document.getElementById("google-signup"),
+                { theme: "outline", size: "large" } // Customize the Google sign-in button
+            );
+        }
+    </script>
+    
+    <!-- Facebook Sign-In JavaScript Logic -->
+    <script>
+        // Initialize Facebook SDK
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : 'YOUR_FACEBOOK_APP_ID',  // Replace with your Facebook App ID
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v13.0'
+            });
+        };
+    
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    
+        // Facebook Sign-In
+        document.getElementById("facebook-signup").addEventListener("click", function() {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    console.log("Facebook login successful:", response);
+                    // Extract user data
+                    FB.api('/me', { fields: 'name,email,picture' }, function(profile) {
+                        console.log('Facebook user data:', profile);
+                        // Send this data to your backend
+                    });
+                } else {
+                    console.log("User canceled login or did not fully authorize.");
+                }
+            }, { scope: 'email' });
+        });
+    </script>
+    
+    </body>
+    </html>
+    
