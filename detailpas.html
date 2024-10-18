@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ride Details</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F2E5BF;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .host-details {
+      background-color: azure;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .host-details h2 {
+      margin: 0 0 10px 0;
+    }
+
+    .route {
+      position: relative;
+      height: 200px;
+      border: 1px dashed #007bff;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .moving-line {
+      position: absolute;
+      height: 4px;
+      background-color: #007bff;
+      top: 50%;
+      left: 0;
+      transition: left 1s linear;
+    }
+
+    .status {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .points {
+      position: absolute;
+      height: 10px;
+      width: 10px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .start-host {
+      left: 0;
+    }
+
+    .start-passenger {
+      left: 50%;
+    }
+
+    .end-passenger {
+      left: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="host-details">
+    <h2>Host Details</h2>
+    <p><strong>Name:</strong> John Doe</p>
+    <p><strong>Vehicle No:</strong> ABC1234</p>
+    <p><strong>Mobile Number:</strong> +1 234 567 8900</p>
+    <p><strong>Estimated Time Required:</strong> <span id="eta">5 min</span></p>
+  </div>
+
+  <div class="route" id="route">
+    <div class="moving-line" id="moving-line"></div>
+    <div class="points start-host"></div>
+    <div class="points start-passenger"></div>
+    <div class="points end-passenger"></div>
+  </div>
+
+  <div class="status" id="status">Status: Waiting for host to start...</div>
+
+  <button id="start-btn">Start Ride</button>
+
+  <script>
+    let travelTime = 0; // in seconds
+    let interval;
+    
+    $("#start-btn").on("click", function() {
+      travelTime = 0; // Reset travel time
+      $("#status").text("Status: On the way...");
+      moveLine();
+      updateETA();
+    });
+
+    function moveLine() {
+      const routeWidth = $("#route").width();
+      interval = setInterval(() => {
+        travelTime += 1;
+        
+        // Calculate the position along the route
+        const totalTravelTime = 60; // Total time to travel in seconds
+        const position = Math.min((travelTime / totalTravelTime) * routeWidth, routeWidth); // Calculate new position
+        
+        $("#moving-line").css("left", position + "px");
+
+        // Update ETA
+        const remainingTime = Math.max(0, 5 - travelTime); // Start from 5 minutes
+        $("#eta").text(remainingTime + " min");
+
+        // Check if the ride is complete
+        if (remainingTime <= 0) {
+          clearInterval(interval);
+          $("#status").text("Status: Arrived at destination!");
+        }
+      }, 1000); // Update every second
+    }
+
+    function updateETA() {
+      // This could be more dynamic based on the actual distance and speed
+      $("#eta").text("5 min");
+    }
+  </script>
+</body>
+</html>
