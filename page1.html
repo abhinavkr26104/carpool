@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Full Screen Image with Overlay</title>
   <style>
-    a
-    {
-      font-size:20px;
+    a {
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      z-index: 4; /* Ensure it is above the overlay */
     }
+
     body, html {
       margin: 0;
       padding: 0;
@@ -48,9 +51,8 @@
       top: calc(53% - 0.5cm); /* Move text 0.5cm higher */
       left: 50%; /* Center the text horizontally */
       transform: translate(-50%, -50%); /* Adjust for the text width and height */
-      color: white; /* Text color */
       text-align: center; /* Center the text */
-      z-index: 3; /* Ensures the text is above the overlay */
+      z-index: 4; /* Ensures the text is above the overlay */
     }
 
     .location-button-container {
