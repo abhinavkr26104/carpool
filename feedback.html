@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Image with Overlay</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevents scrolling */
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%; /* Ensures full height */
+        }
+
+        .full-screen-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the entire area */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Black overlay with 90% opacity */
+            pointer-events: none; /* Allows clicks to pass through the overlay */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7c8a4; /* Light peach background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .popup {
+            background-color: #007bff; /* Blue background color */
+            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            position: absolute; /* Changed to absolute for better centering */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Move the popup to the exact center */
+        }
+        
+        
+        .popup-content {
+            text-align: center;
+        }
+        .text-and-image {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+    justify-content: space-between; /* Add space between the text and image */
+}
+
+.text-content {
+    margin-right: 20px; /* Space between the text and image */
+}
+
+.image-container img {
+    width: 150px; /* Adjust the width of the image to fit the popup */
+    border-radius: 10px;
+}
+        
+        .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                background: none; /* Removes any background */
+                border: none; /* Removes the default button border */
+                color: #fff; /* White color for the "X" */
+                font-size: 20px;
+                cursor: pointer;
+                padding: 0; /* Removes default padding */
+            }
+            
+        
+        
+        h2 {
+            color: #fff;
+            margin: 0;
+        }
+        
+        p {
+            color: #fff;
+            margin: 10px 0;
+        }
+        
+        .feedback-btn {
+            background-color: #fff;
+            color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .image-container {
+            margin-top: 15px;
+        }
+        
+        .image-container img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+
+      
+    </style>
+</head>
+    <body>
+        <img src="./page1.png" class="full-screen-image">
+        <div class="overlay"></div> <!-- Overlay div -->
+        <div class="popup">
+            <div class="popup-content">
+                <button class="close-btn">&times;</button> <!-- Changed to a button for better accessibility -->
+                <div class="text-and-image">
+                    <div class="text-content">
+                        <h2>Ride has completed!</h2>
+                        <p>You have reached your destination.<br>Give us your feedback</p>
+                        <button class="feedback-btn">Feedback</button> <!-- Feedback as a button -->
+                    </div>
+                    <div class="image-container">
+                        <img src="pplincar.png" alt="People in car" />
+                    </div> 
+                </div> <!-- Closing text-and-image div -->
+            </div> <!-- Closing popup-content div -->
+        </div> <!-- Closing popup div -->
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+        <script>
+            // JavaScript to handle the popup close functionality
+            document.querySelector('.close-btn').addEventListener('click', function() {
+                document.querySelector('.popup').style.display = 'none';
+            });
+        </script>
+    </body>
+    
+
