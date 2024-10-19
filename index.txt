@@ -1,0 +1,197 @@
+
+// const app = express();
+// const port = process.env.PORT || 3000;
+
+// // Connect to the first database
+// mongoose.connect('mongodb://127.0.0.1:27017/database1', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+//   .then(() => console.log('Connected to Database 1'))
+//   .catch((err) => console.error('Error connecting to Database 1:', err));
+
+// // Define the schema for the first database
+// const schema1 = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     required: true,
+//   },
+//   gender: {
+//     type: String,
+//     required: true,
+//   },
+//   email: {}
+//     type: String,
+//     required: true,
+//   },
+//   contactNumber: {
+//     type: Number,
+//     required: true,
+//   },
+//   address: {
+//     type: String,
+//     required: true,
+//   },
+//   vehicleCompany: {
+//     type: String,
+//     required: true,
+//   },
+//   seater: {
+//     type: Number,
+//     required: true,
+//   },
+//   seatsavailable: {
+//     type: Number,
+//     required: true,
+//   },
+//   date: {
+//     type: Date,
+//     required: true,
+//   },
+//   startLocation: {
+//     type: String,
+//     required: true,
+//   },
+//   destination: {
+//     type: String,
+//     required: true,
+//   },
+// });
+
+// // HTTP methods for Database 1
+
+// app.get('/database1/data', async (req, res) => {
+//     try {
+//       const data = await Model1.find();
+//       res.json(data);
+//     } catch (err) {
+//       res.status(500).json({ error: 'Failed to fetch data from Database 1' });
+//     }
+//   });
+  
+//   app.post('/database1/data', async (req, res) => {
+//     try {
+//       const newData = new Model1(req.body);
+//       await newData.save();
+//       res.status(201).json(newData);
+//     } catch (err) {
+//       res.status(400).json({ error: 'Failed to create data in Database 1' });
+//     }
+//   });
+// const Model1 = mongoose.model('Model1', schema1);
+
+// app.listen(9000, () => {
+//     console.log(`Server listening on port ${port}`);
+//   });
+
+// // Connect to the second database
+// mongoose.connect('mongodb://127.0.0.1:27017/database2', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+//   .then(() => console.log('Connected to Database 2'))
+//   .catch((err) => console.error('Error connecting to Database 2:', err));
+
+// // Define the schema for the second database
+// const schema2 = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     required: true,
+//   },
+//   gender: {
+//     type: String,
+//     required: true,
+//   },
+//   email: {
+//     type: String,
+//     required: true,
+//   },
+//   contactNumber: {
+//     type: Number,
+//     required: true,
+//   },
+//   date: {
+//     type: Date,
+//     required: true,
+//   },
+//   startLocation: {
+//     type: String,
+//     required: true,
+//   },
+//   destination: {
+//     type: String,
+//     required: true,
+//   },
+// });
+
+// // HTTP methods for Database 2
+
+// app.get('/database2/data', async (req, res) => {
+//     try {
+//       const data = await Model2.find();
+//       res.json(data);
+//     } catch (err) {
+//       res.status(500).json({ error: 'Failed to fetch data from Database 2' });
+//     }
+//   });
+  
+//   app.post('/database2/data', async (req, res) => {
+//     try {
+//       const newData = new Model2(req.body);
+//       await newData.save();
+//       res.status(201).json(newData);
+//     } catch (err) {
+//       res.status(400).json({ error: 'Failed to create data in Database 2' });
+//     }
+//   });
+
+// const Model2 = mongoose.model('Model2', schema2);
+
+// app.listen(9001, () => {
+//     console.log(`Server listening on port ${port}`);
+//   });
+// // Connect to the third database (for common data)
+// mongoose.connect('mongodb://localhost:27017/commonData', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+//   .then(() => console.log('Connected to Common Data Database'))
+//   .catch((err) => console.error('Error connecting to Common Data Database:', err));
+
+// // Define the schema for common data
+// const commonSchema = new mongoose.Schema({
+//   startLocation: {
+//     type: String,
+//     required: true,
+//   },
+//   destination: {
+//     type: String,
+//     required: true,
+//   },
+// });
+
+// const CommonData = mongoose.model('CommonData', commonSchema);
+
+
+// // Find common data and store it in the third database
+// app.get('/common-data', async (req, res) => {
+//   try {
+//     const data1 = await Model1.find();
+//     const data2 = await Model2.find();
+
+//     const commonData = data1.filter((item1) => {
+//       return data2.some((item2) => item1.startLocation === item2.startLocation && item1.destination === item2.destination); // Find common data based on startLocation and destination
+//     });
+
+//     // Store common data in the third database
+//     await CommonData.insertMany(commonData);
+
+//     res.json({ message: 'Common data stored successfully' });
+//   } catch (err) {
+//     res.status(500).json({ error: 'Failed to find or store common data' });
+//   }
+// });
+// // Start the server
+// app.listen(4000, () => {
+//   console.log(`Server listening on port ${port}`);
+// });

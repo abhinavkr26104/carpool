@@ -1,16 +1,16 @@
 {
-  "name": "hackathon",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.7.2"
+  },
+  "name": "javaapps",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "commondatabase.js",
+  "devDependencies": {},
   "scripts": {
-    "start": "node index1"
+    "start":"node commondb"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.21.1",
-    "joi": "^17.13.3",
-    "mongoose": "^8.7.2"
-  },
   "description": ""
 }
