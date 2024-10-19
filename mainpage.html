@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CorpPool - Corporate Car Pooling</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+          background-color: #C4D7FF;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode */
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: #2c3e50;
+            color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: #fff;
+            text-decoration: none; /* Remove underline from the logo */
+        }
+
+        .logo svg {
+            margin-right: 0.5rem;
+        }
+
+        nav {
+            display: flex; /* Make nav a flex container */
+            align-items: center; /* Center items vertically */
+        }
+
+        nav a {
+            margin-left: 1rem;
+            font-size: 0.875rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem; /* Adjust padding for the fixed header */
+            margin-top: -5px; /* Ensure content starts below fixed header */
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            
+        }
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #666;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: hsl(197, 100%, 50%);
+            color: white;
+            border-radius: 0.25rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #402a23;
+        }
+
+        /* Content Section */
+        .content {
+            padding: 40px 1rem;
+            background-color: #3A6D8C;
+        }
+        .contentsss {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #0c0c0c;
+            margin-bottom: 20px;
+        }
+
+        .icons {
+          color: #bce1fa;
+            display: flex;
+            justify-content: space-between; /* Adjust space between items */
+            flex-wrap: nowrap; /* Keep all items in a single line */
+        }
+
+        .icon {
+          color: #a2ceeb;
+            flex: 1; /* Allow each icon to take equal space */
+            margin-right: 20px; /* Space between icons */
+        }
+
+        .icon:last-child {
+            margin-right: 0; /* Remove margin from the last icon */
+        }
+
+        .icon:hover {
+            transform: translateY(-10px);
+        }
+        
+        .iconzie {
+            display: inline-block;
+            padding: 15px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .iconzie svg {
+            color: rgb(115, 194, 207);
+            width: 30px;
+            height: 30px;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1em;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        /* How it works section */
+        .how-it-works {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        .how-it-works h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .step {
+            background-color: #f5f5f5;
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+        .step-number {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            background-color: rgb(0, 153, 255);
+            color: white;
+            border-radius: 50%;
+            line-height: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA section */
+        .cta {
+            background-color: #f5f5f5;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .cta form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .cta input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem 0 0 0.25rem;
+        }
+        .cta button {
+            padding: 0.5rem 1rem;
+            background-color: #00eeff;
+            color: white;
+            border: none;
+            border-radius: 0 0.25rem 0.25rem 0;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        footer p,
+        footer nav {
+          color:#fff;
+            flex: 1;
+            text-align: center;
+        }
+
+        footer nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        footer nav a:hover {
+            color: #3498db;
+        }
+         /* Media Queries for Responsiveness */
+         @media (max-width: 768px) {
+            footer {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            footer nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            .container {
+                flex-direction: column; /* Stack choices vertically on small screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+        goCorp
+    </a>
+    <nav class="txt">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+    <main>
+        <section class="hero">
+            <div class="imagecontainer">
+                <img class="zj5dd90" loading="eager" decoding="sync" src="https://cdn.blablacar.com/kairos/assets/images/carpool_only_large-1fb250954893109fa160.svg" alt="" fetchpriority="high">
+            </div>
+            <div class="container">
+                <h1>Commute Smarter, Together</h1>
+                <p>Join your colleagues in reducing traffic, saving money, and decreasing your carbon footprint with our corporate car pooling solution.</p>
+                <a class="button" id="get-started">Get Started</a>
+            </div>
+        </section>
+
+        <section id="content" class="content">
+            <div class="contentsss">
+                <h2>What we offer!</h2>
+                <div class="icons">
+                    <div class="icon">
+                        <div class="iconzie"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4V4zm4 4v8h8V8H8z"/></svg></div>
+                        <h3>Your pick of rides at low prices</h3>
+                        <p>No matter where you’re going, by bus or carpool, find the perfect ride from our wide range of destinations and routes at low prices.</p>
+                    </div>
+                    <div class="icon">
+                        <div class="iconzie"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 16h16M4 8h16"/></svg></div>
+                        <h3>Trust who you travel with</h3>
+                        <p>We take the time to get to know each of our members and bus partners. We check reviews, profiles and IDs, so you know who you’re travelling with and can book your ride at ease on our secure platform.</p>
+                    </div>
+                    <div class="icon">
+                        <div class="iconzie"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17h6v4h-6zM15 13h6v-4h-6zm-9 0h6v4H6zm0 6h6v-4H6zm0-10h6V5H6zm10 0h-4v4h4z"/></svg></div>
+                        <h3>Scroll, click, tap and go!</h3>
+                        <p>Booking a ride has never been easier! Thanks to our simple app powered by great technology, you can book a ride close to you in just minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Join the platform and set up your profile.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Invite Your Team</h3>
+                    <p>Send invites to your colleagues to join the carpool.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Pooling</h3>
+                    <p>Begin your journey with shared rides to work.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+          <p>&copy; 2024 goCorp. All rights reserved.</p>
+          <nav>
+              <a href="#features">Features</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+              <div id="dark-mode-toggle-container"></div> <!-- Placeholder for the toggle button -->
+          </nav>
+      </footer>
+</body>
+</html>
