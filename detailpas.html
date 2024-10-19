@@ -220,6 +220,55 @@
         margin-top: 0.5rem;
       }
     }
+    #emergency-btn {
+      background-color: #e74c3c;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    #emergency-btn:hover {
+      background-color: #c0392b;
+    }
+
+    #emergency-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: var(--medium-blue);
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid var(--accent-blue);
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .close-modal {
+      color: var(--accent-blue);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      color: var(--light-blue);
+    }
   </style>
 </head>
 <body>
@@ -264,6 +313,7 @@
         </div>
       </div>
       <div class="status" id="status">Status: Ready to start the ride...</div>
+      <button id="emergency-btn">Emergency</button>
     </div>
 
     <div class="map-container">
@@ -407,6 +457,62 @@
   }
 
   $("#reset-view-btn").on("click", resetMapView);
+  let currentLocation = null;
+
+function updateCurrentLocation(location) {
+  currentLocation = location;
+}
+
+$("#emergency-btn").on("click", function() {
+  if (currentLocation) {
+    $("#emergency-location").text(`Latitude: ${currentLocation.lat.toFixed(6)}, Longitude: ${currentLocation.lng.toFixed(6)}`);
+  } else {
+    $("#emergency-location").text("Location not available");
+  }
+  $("#emergency-modal").css("display", "block");
+  
+  // Simulate contacting emergency services
+  console.log("Emergency services contacted with location:", currentLocation);
+});
+
+$(".close-modal").on("click", function() {
+  $("#emergency-modal").css("display", "none");
+});
+
+// Modify the moveAlongRoute function to update current location
+function moveAlongRoute(route) {
+  let routeIndex = 0;
+  let polyline = L.polyline([], { color: '#3498db', weight: 5 }).addTo(map);
+
+  routeBounds = L.latLngBounds(route.map(coord => [coord[1], coord[0]]));
+  window.routeBounds = routeBounds;
+
+  map.fitBounds(routeBounds.pad(0.05));
+  let currentZoom = map.getZoom();
+  map.setZoom(Math.min(currentZoom + 4, 18));
+
+  interval = setInterval(() => {
+    travelTime += 1;
+
+    if (routeIndex < route.length) {
+      const currentLocation = {
+        lng: route[routeIndex][0],
+        lat: route[routeIndex][1]
+      };
+
+      updateCurrentLocation(currentLocation); // Update current location
+
+      routeIndex++;
+      polyline.addLatLng([currentLocation.lat, currentLocation.lng]);
+      map.panTo([currentLocation.lat, currentLocation.lng]);
+
+      updateETA(route.length - routeIndex);
+    } else {
+      clearInterval(interval);
+      $("#status").text("Status: Arrived at destination!");
+    }
+  }, 1000);
+}
 </script>
 </body>
 </html>
