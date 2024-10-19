@@ -11,6 +11,7 @@
             background-color: #001F3F;
             margin: 0;
         }
+
         header {
             display: flex;
             align-items: center;
@@ -49,6 +50,7 @@
         nav a:hover {
             text-decoration: underline;
         }
+
         .container {
             margin-top: 30px;
             max-width: 1200px;
@@ -93,22 +95,24 @@
             box-sizing: border-box;
         }
 
-        .form-group input[type="submit"] {
+        .form-group button {
+            width: 100%;
+            padding: 10px;
             background-color: #28a745;
             color: white;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 1rem;
         }
 
-        .form-group input[type="submit"]:hover {
-            background-color: #218838;
+        .form-group button:hover {
+            background-color: #218838; /* Darker green on hover */
         }
 
         .image-container {
             flex: 1;
             max-width: 500px;
-            height: 400px;
-            ; /* Border color */
             border-width: 10px; /* Increased border thickness */
             border-radius: 8px; /* Rounded corners */
             overflow: hidden;
@@ -125,8 +129,9 @@
             height: auto;
             display: block;
         }
-         /* Responsive Footer */
-         footer {
+
+        /* Responsive Footer */
+        footer {
             background-color: #2c3e50;
             color: #fff;
             padding: 1.5rem 0;
@@ -154,8 +159,9 @@
         footer nav a:hover {
             color: #3498db;
         }
-         /* Media Queries for Responsiveness */
-         @media (max-width: 768px) {
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
             footer {
                 flex-direction: column;
                 padding: 1rem 0;
@@ -170,7 +176,6 @@
                 flex-direction: column; /* Stack choices vertically on small screens */
             }
         }
-
     </style>
 </head>
 
@@ -192,7 +197,7 @@
         <div class="form-container">
             <h2>Passenger Registration</h2>
 
-            <form id="passengerForm">
+            <form id="passengerForm" action="availablecar.html" method="GET">
                 <div class="form-group">
                     <label for="passengerName">Name:</label>
                     <input type="text" id="passengerName" name="passengerName" required>
@@ -219,7 +224,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Submit Passenger Details">
+                    <button type="submit">Submit Passenger Details</button>
                 </div>
             </form>
         </div>
@@ -240,36 +245,6 @@
             <div id="dark-mode-toggle-container"></div> <!-- Placeholder for the toggle button -->
         </nav>
     </footer>
-    <script>
-        // JavaScript to handle form submission
-        document.getElementById("passengerForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-
-            // Get input values
-            const passengerName = document.getElementById("passengerName").value;
-            const mobileNo = document.getElementById("mobileNo").value;
-            const email = document.getElementById("email").value;
-            const gender = document.getElementById("gender").value;
-
-            // Send passenger data to the server
-            fetch('http://localhost:5000/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: passengerName, mobile: mobileNo, email: email, gender: gender }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("Passenger registered successfully!");
-                    document.getElementById("passengerForm").reset(); // Clear the form fields
-                } else {
-                    alert("Error registering passenger.");
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    </script>
 
 </body>
 
