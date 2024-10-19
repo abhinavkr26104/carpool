@@ -185,14 +185,14 @@
         <div class="choice-box" id="host-box" onclick="selectRole('Host')">
             <img src="https://www.shutterstock.com/image-vector/car-drive-icon-on-white-260nw-2047603502.jpg" alt="Host Image" class="choice-image">
             <p>Become a Host to offer your services.</p>
-            <button>Host</button>
+            <button href="hostreg.html">Host</button>
         </div>
 
         <!-- Passenger Option -->
         <div class="choice-box" id="passenger-box" onclick="selectRole('Passenger')">
             <img src="https://i.pinimg.com/736x/32/da/bd/32dabdb83c4fe1be1929f52bb8e328a4.jpg" alt="Passenger Image" class="choice-image">
             <p>Choose Passenger to find travel options.</p>
-            <button>Passenger</button>
+            <button href="pasreg.html">Passenger</button>
         </div>
     </div>
 
@@ -210,11 +210,11 @@
     <!-- JavaScript to Handle Selection -->
     <script>
         function selectRole(role) {
-            alert(`You selected: ${role}`);
+            
             if (role === 'Host') {
-                window.location.href = "/host-page";  // Redirect to the host page
+                window.location.href = "/hostreg.html";  // Redirect to the host page
             } else if (role === 'Passenger') {
-                window.location.href = "/passenger-page";  // Redirect to the passenger page
+                window.location.href = "/pasreg.html";  // Redirect to the passenger page
             }
         }
     </script>
