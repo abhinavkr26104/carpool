@@ -1,17 +1,15 @@
 {
-  "name": "javaapps",
+  "name": "commondatabse",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "comon.js",
   "scripts": {
-    "start": "node database1",
-    "start1": "node database2"
+    "start":"node comon"
   },
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "express": "^4.21.1",
     "mongoose": "^8.7.2"
-  },
-  "devDependencies": {},
-  "description": ""
+  }
 }
