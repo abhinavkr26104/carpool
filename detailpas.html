@@ -285,6 +285,42 @@
         .close:hover {
             color: var(--accent-blue);
         }
+        .driver-details {
+  background-color: var(--medium-blue);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.driver-details h2 {
+  display: flex;
+  align-items: center;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.user-icon {
+  margin-right: 0.5rem;
+}
+
+.driver-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.driver-info-grid .label {
+  color: var(--light-blue);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.driver-info-grid .value {
+  color: var(--text-color);
+  font-weight: 600;
+}
 
   </style>
 </head>
@@ -305,6 +341,30 @@
   </header>
 
   <main>
+    <div class="driver-details">
+      <h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="user-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Driver Details
+      </h2>
+      <div class="driver-info-grid">
+        <div>
+          <p class="label">Name:</p>
+          <p class="value" id="driver-name">John Doe</p>
+        </div>
+        <div>
+          <p class="label">Rating:</p>
+          <p class="value" id="driver-rating">4.8 / 5</p>
+        </div>
+        <div>
+          <p class="label">Vehicle:</p>
+          <p class="value" id="vehicle-model">Toyota Camry</p>
+        </div>
+        <div>
+          <p class="label">License Plate:</p>
+          <p class="value" id="license-plate">ABC 123</p>
+        </div>
+      </div>
+    </div>
     <div class="ride-details">
       <div class="host-details">
         <h2>Ride Details</h2>
@@ -530,6 +590,20 @@ function moveAlongRoute(route) {
     }
   }, 1000);
 }
+function updateDriverDetails(name, rating, vehicle, licensePlate) {
+  document.getElementById('driver-name').textContent = name;
+  document.getElementById('driver-rating').textContent = rating + ' / 5';
+  document.getElementById('vehicle-model').textContent = vehicle;
+  document.getElementById('license-plate').textContent = licensePlate;
+}
+
+// Example usage: Update driver details when the ride starts
+$("#start-btn").on("click", function() {
+  // ... existing start button logic ...
+
+  // Update driver details
+  updateDriverDetails('Jane Smith', 4.9, 'Honda Civic', 'XYZ 789');
+});
 </script>
 </body>
 </html>
