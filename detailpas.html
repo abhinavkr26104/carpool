@@ -221,54 +221,71 @@
       }
     }
     #emergency-btn {
-      background-color: #e74c3c;
-      color: white;
-      font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
+            background-color: var(--emergency-red);
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
 
-    #emergency-btn:hover {
-      background-color: #c0392b;
-    }
+        #emergency-btn:hover {
+            background-color: #c0392b;
+        }
 
-    #emergency-modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-    }
+        #map-placeholder {
+            background-color: var(--medium-blue);
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--light-blue);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
 
-    .modal-content {
-      background-color: var(--medium-blue);
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid var(--accent-blue);
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-    }
+        #status {
+            background-color: var(--medium-blue);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
 
-    .close-modal {
-      color: var(--accent-blue);
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        #emergency-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
 
-    .close-modal:hover {
-      color: var(--light-blue);
-    }
+        .modal-content {
+            background-color: var(--medium-blue);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid var(--accent-blue);
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: var(--light-blue);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--accent-blue);
+        }
+
   </style>
 </head>
 <body>
